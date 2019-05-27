@@ -12,7 +12,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
 
-var firestore = admin.firestore();
+const firestore = admin.firestore();
 
 console.log("....running....\n");
 
@@ -22,10 +22,21 @@ const geoCollectionRef = geoFirestore.collection("sample_geofirestore");
 
 let loc = new admin.firestore.GeoPoint(points.HOME[0], points.HOME[1]);
 
-createInFirestore("237r346wibdfk", {
-  name: "Cinema Nova",
-  coordinates: loc
-});
+// createInFirestore("237r346wibdfk", {
+//   name: "Cinema Nova",
+//   coordinates: loc
+// });
+
+const promises = [];
+for (let key in points) {
+    promises.push(
+      createInFirestore(key, {
+        name: key,
+        coordinates: new admin.firestore.GeoPoint(points[key][0], points[key][1])
+      })
+    )
+}
+
 
 // var setAda = docRef.set({
 //   first: "Ada",
