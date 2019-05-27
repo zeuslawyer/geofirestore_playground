@@ -30,5 +30,4 @@ To initialize your project:
 3. uses geofirestore to write and read from the db
 
 # TODOS
-    - config Firestore
-    - use geofirestore to save geohashed locations to db
+    - consider useing Geokit instead of geofirestore?
